@@ -4,7 +4,7 @@
   "description": "easy fast to create a free online gallery",
   "main": "index.js",
   "scripts": {
-    "pre": "pnpm install && cd view && pnpm install",
+    "pre": "yarn install && cd view && yarn install",
     "build": "node index.js && cd view && npm run build && cd ..",
     "deploy": "git add . && git commit -m 'build' && git push origin main",
     "start": "npm run build && npm run deploy"

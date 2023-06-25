@@ -37,12 +37,12 @@ fs.readdir(basePath, async function (err, files) {
         images(filedir)
           .size(thumbSize)
           .save(path.resolve(`view/public/thumb-${filename}`), { quality: 75 })
-      } catch (error) {}
+      } catch (error) { }
       // 处理json数据
       let dimensions = { url: filename, datetime: dayjs(stats.birthtime).format('YYYY-MM-DD hh:mm:ss'), thumb: 'thumb-' + filename }
       try {
         dimensions = { ...dimensions, ...(await exifGetInfo(filename)) }
-      } catch (error) {}
+      } catch (error) { }
       try {
         dimensions = { ...dimensions, ...sizeOf(filedir) }
         if ([6, 8, 3].includes(dimensions.orientation) || dimensions.privacy) {
@@ -52,7 +52,7 @@ fs.readdir(basePath, async function (err, files) {
         } else {
           cp(filedir, path.resolve(`view/public/${filename}`))
         }
-      } catch (error) {}
+      } catch (error) { }
       if (dimensions.width) {
         const color = await getColor(filename)
         picsData.push({ ...dimensions, ...getDate(dimensions.datetime), color: rgbToHex(color), size: calculateSize(stats.size / 1024) })
